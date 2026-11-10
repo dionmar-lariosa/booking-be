@@ -1,10 +1,10 @@
-import Fastify from 'fastify';
-import routes from './routes/index.js';
+import Fastify from "fastify";
+import routes from "./routes/index.js";
 
 export const app = Fastify({
-  logger: true,
+  logger: true
 });
 
 app.register(routes, {
-  prefix: '/api',
+  prefix: "/api"
 });

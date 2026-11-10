@@ -10,7 +10,7 @@ const healthRoute: FastifyPluginAsync = async (fastify) => {
         status: "ok",
         message: "API and database are running",
         database: "connected",
-        timestamp: new Date().toISOString(),
+        timestamp: new Date().toISOString()
       };
     } catch (error) {
       fastify.log.error(error);

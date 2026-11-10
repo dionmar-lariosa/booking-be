@@ -1,13 +1,11 @@
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
-import type { User, CreateUserInput } from './user.types.js';
+import type { User, CreateUserInput } from "./user.types.js";
 
-const filePath = join(process.cwd(), 'src/data/users.json');
+const filePath = join(process.cwd(), "src/data/users.json");
 
-const users: User[] = JSON.parse(
-  readFileSync(filePath, 'utf-8'),
-);
+const users: User[] = JSON.parse(readFileSync(filePath, "utf-8"));
 
 export const getUsers = (): User[] => {
   return users;
@@ -22,7 +20,7 @@ export const createUser = (input: CreateUserInput): User => {
     id: Math.max(0, ...users.map((user) => user.id)) + 1,
     ...input,
     isActive: true,
-    createdAt: new Date().toISOString(),
+    createdAt: new Date().toISOString()
   };
 
   users.push(user);
