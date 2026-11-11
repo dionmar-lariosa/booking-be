@@ -3,20 +3,27 @@ import type { FastifySchema } from "fastify";
 export const createUserSchema: FastifySchema = {
   body: {
     type: "object",
-    required: ["name", "email", "role"],
+    required: ["firstName", "lastName", "middleName", "email", "password"],
     additionalProperties: false,
     properties: {
-      name: {
+      firstName: {
         type: "string",
         minLength: 2
+      },
+      lastName: {
+        type: "string",
+        minLength: 2
+      },
+      middleName: {
+        type: "string"
       },
       email: {
         type: "string",
         format: "email"
       },
-      role: {
+      password: {
         type: "string",
-        enum: ["admin", "manager", "employee", "customer"]
+        minLength: 8
       }
     }
   }

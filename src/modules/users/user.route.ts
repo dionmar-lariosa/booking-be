@@ -1,35 +1,35 @@
 import type { FastifyPluginAsync } from "fastify";
-
-import { getUsers, getUserById, createUser } from "./user.service.js";
-
 import { createUserSchema } from "./user.schema.js";
+import UserService from "./user.service.js";
 
 const userRoutes: FastifyPluginAsync = async (fastify) => {
   // GET /users
   fastify.get("/", async () => {
-    return getUsers();
+    return UserService.getUsers();
   });
 
   // GET /users/:id
   fastify.get<{ Params: { id: string } }>("/:id", async (request, reply) => {
-    const user = getUserById(Number(request.params.id));
+    const user = UserService.getUserById(request.params.id);
 
-    if (!user) {
-      return reply.status(404).send({
-        message: "User not found"
-      });
-    }
+    // if (!user) {
+    //   return reply.status(404).send({
+    //     message: "User not found"
+    //   });
+    // }
 
-    return user;
+    // return user;
   });
 
   // POST /users
   fastify.post("/", { schema: createUserSchema }, async (request, reply) => {
-    const user = createUser(
+    const user = UserService.createUser(
       request.body as {
-        name: string;
+        firstName: string;
+        lastName: string;
+        middleName: string;
         email: string;
-        role: "admin" | "manager" | "employee" | "customer";
+        password: string;
       }
     );
 

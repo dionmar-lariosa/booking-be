@@ -1,16 +1,15 @@
 export type UserRole = "admin" | "manager" | "employee" | "customer";
 
 export interface User {
-  id: number;
-  name: string;
+  id: string;
+  firstName: string;
+  lastName: string;
+  middleName: string;
   email: string;
+  password: string;
   role: UserRole;
   isActive: boolean;
   createdAt: string;
 }
 
-export interface CreateUserInput {
-  name: string;
-  email: string;
-  role: UserRole;
-}
+export type CreateUserInput = Omit<User, "id" | "role" | "isActive" | "createdAt">;
